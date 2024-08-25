@@ -1,6 +1,6 @@
 import os
 import base64
-#import tensorflow as tf
+import tensorflow as tf
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.models import load_model
@@ -8,15 +8,9 @@ import numpy as np
 import cv2
 import streamlit as st
 
-# Clear previous TensorFlow sessions
-from tensorflow.keras import backend as K
-K.clear_session()
-CUDA_VISIBLE_DEVICES = 1
-TF_ENABLE_ONEDNN_OPTS = 0
-PYDEVD_DISABLE_FILE_VALIDATION = 1
 
 # Define constants
-MODEL_PATH = r"C:\Users\Nenchi\Documents\Python_Scripts\Ola-Leaf_Disease_Detection-Classification\Leaf_Disease_Detection-Classification/PlantVillage.keras"
+MODEL_PATH = "PlantVillage.keras"
 CLASS_NAMES = [
     "Pepper__bell___Bacterial_spot", "Pepper__bell___healthy",
     "Potato___Early_blight", "Potato___healthy", "Potato___Late_blight",
@@ -80,7 +74,7 @@ uploaded_file = st.file_uploader("Choose an image...",
 print(uploaded_file)
 if uploaded_file is not None:
     # Save the uploaded file
-    image_path = os.path.join(r"C:\Users\Nenchi\Documents\Python_Scripts\Ola-Leaf_Disease_Detection-Classification\Leaf_Disease_Detection-Classification/static/", uploaded_file.name)
+    image_path = os.path.join("static/", uploaded_file.name)
     with open(image_path, "wb") as f:
         f.write(uploaded_file.getbuffer())
 
